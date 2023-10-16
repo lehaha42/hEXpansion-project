@@ -1,4 +1,4 @@
-from sell import Sell
+from cell import Cell
 from settings import *
 
 
@@ -6,7 +6,7 @@ class World:
     def __init__(self, app, size=8):
         self.app = app
         self.size = size
-        self.arr = [[Sell(self.app, size*1.5-1 > i + j >= size/2-1)
+        self.arr = [[Cell(self.app, size * 1.5 - 1 > i + j >= size / 2 - 1)
                      for i in range(self.size)]
                     for j in range(self.size)]
 

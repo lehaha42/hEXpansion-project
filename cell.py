@@ -2,7 +2,7 @@ import pygame as pg
 from settings import *
 
 
-class Sell:
+class Cell:
     def __init__(self, app, exist=True):
         self.app = app
         self.exist = exist

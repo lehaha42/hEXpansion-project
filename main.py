@@ -34,7 +34,7 @@ class App:
                 self.is_running = False
 
     def render(self):
-        self.screen.fill(BLACK)
+        self.screen.fill(BACKGROUND)
         self.world.show(self.offset, self.scale)
         pg.display.flip()
 
