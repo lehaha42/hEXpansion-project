@@ -7,4 +7,3 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 SCALE_REDUCTION = 0.6
-#git_test
