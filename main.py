@@ -23,12 +23,11 @@ class App:
         self.offset = [10, 20]
 
     def update(self):
-
         self.delta_time = self.clock.tick()
         self.time = self.clock.get_time() * 0.001
         pg.display.set_caption(f'FPS: {self.clock.get_fps():.0f}')
 
-    def handle_event(self):
+    def handle_events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 self.is_running = False
@@ -40,7 +39,7 @@ class App:
 
     def run(self):
         while self.is_running:
-            self.handle_event()
+            self.handle_events()
             self.update()
             self.render()
         pg.quit()
