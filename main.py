@@ -18,7 +18,7 @@ class App:
     def on_init(self):
         self.world = World(self, 15)
         self.scale = 50
-        self.offset = [10, 20]
+        self.offset = [50, 50]
 
     def update(self):
         self.delta_time = self.clock.tick()
