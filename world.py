@@ -1,5 +1,5 @@
-from cell import Cell
 from settings import *
+from cell import Cell
 
 
 class World:

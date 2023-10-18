@@ -1,3 +1,6 @@
+import pygame as pg
+import sys
+
 
 WIN_RES = (1200, 800)
 NAME = 'hEXpansion'

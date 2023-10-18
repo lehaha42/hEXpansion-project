@@ -1,5 +1,3 @@
-import pygame as pg
-import sys
 from settings import *
 from world import World
 
