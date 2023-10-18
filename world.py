@@ -10,6 +10,7 @@ class World:
                      for i in range(self.size)]
                     for j in range(self.size)]
 
+#ПУСТЬ ТАК ОСТАНЕТСЯ
     def show(self, offset, scale):
         for i in range(self.size):
             for j in range(self.size):
