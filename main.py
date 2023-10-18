@@ -16,9 +16,9 @@ class App:
         self.on_init()
 
     def on_init(self):
-        self.world = World(self, 15)
         self.scale = 50
         self.offset = [10, 20]
+        self.world = World(self, size=15, scale=self.scale, offset=self.offset)
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -32,7 +32,7 @@ class App:
 
     def render(self):
         self.screen.fill(BACKGROUND)
-        self.world.show(self.offset, self.scale)
+        self.world.show()
         pg.display.flip()
 
     def run(self):
