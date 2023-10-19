@@ -1,5 +1,6 @@
 from settings import *
 from world import World
+from mouse_handler import *
 
 
 class App:
