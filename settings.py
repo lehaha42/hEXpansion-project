@@ -13,3 +13,4 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
 BACKGROUND = BLACK
+#test
