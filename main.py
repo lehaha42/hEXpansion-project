@@ -16,7 +16,7 @@ class App:
         self.on_init()
 
     def on_init(self):
-        self.world = World(self, 7)
+        self.world = World(self)
         self.scale = 50
         self.offset = [50, 50]
 
