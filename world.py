@@ -10,9 +10,9 @@ class World:
         self.arr = [[Cell(self.app, self.basic_rule([i, j]))
                      for i in range(self.size)]
                     for j in range(self.size)]
-        '''for i in range(self.size):
+        for i in range(self.size):
             for j in range(self.size):
-                self.arr[i][j].update_connections([1, 1, 1])'''
+                self.arr[i][j].update_connections([1, 1, 1])
 
     def basic_rule(self, pos):
         i, j = pos
@@ -24,8 +24,4 @@ class World:
     def show(self, offset, scale):
         for i in range(self.size):
             for j in range(self.size):
-                self.arr[j][i].show_connections(offset, [i, j], scale)
-
-        for i in range(self.size):
-            for j in range(self.size):
-                self.arr[j][i].show_cell(offset, [i, j], scale)
+                self.arr[j][i].show(offset, [i, j], scale)
