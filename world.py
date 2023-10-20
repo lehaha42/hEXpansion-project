@@ -27,10 +27,17 @@ class World:
         self.offset = [self.offset[0] + pos[0], self.offset[1] + pos[1]]
 
     def zoom(self, direct, pos):
+        prev_scale = self.scale
+
         if direct == 'in':
-            pass
+            self.scale = min(self.scale + 2, 100)
         else:
-            pass
+            self.scale = max(self.scale - 2, 20)
+
+        dif_pos = [self.offset[0] - pos[0], self.offset[1] - pos[1]]
+        move_pos = [dif_pos[0] * (self.scale / prev_scale - 1), dif_pos[1] * (self.scale / prev_scale - 1)]
+
+        self.move_for(move_pos)
 
     def show(self):
         for i in range(self.size):
