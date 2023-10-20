@@ -45,4 +45,6 @@ class World:
                 self.arr[j][i].show(self.offset, [i, j], self.scale)
 
     def update(self):
-        pass
+        for i in range(self.size):
+            for j in range(self.size):
+                self.arr[j][i].update()
