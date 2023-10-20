@@ -26,6 +26,9 @@ class Cell:
         i, j = pos
         return [(i + j/2)*scale + offset[0], j*scale + offset[1]]
 
+    def atack(self):
+        pass
+
     def show(self, offset, pos, size):
         if self.exist:
             cell_pos = self.get_position(offset, pos, size)

@@ -19,6 +19,7 @@ class App:
     def on_init(self):
         self.world = World(self)
         self.mouse_handler = MouseHandler(self)
+        self.curr_team = 'none'
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -35,8 +36,8 @@ class App:
 
     def render(self):
         self.screen.fill(BACKGROUND)
-        #self.world.show() (testing)
-        pg.draw.circle(self.screen, WHITE, self.world.offset, self.world.scale)
+        self.world.show() #testing
+        #pg.draw.circle(self.screen, WHITE, self.world.offset, self.world.scale) #testing
         pg.display.flip()
 
     def run(self):
@@ -51,4 +52,4 @@ class App:
 if __name__ == '__main__':
     app = App()
     app.run()
-#сделать: меню, текстуры, зум, перемещение, команды клеток
+#сделать: меню, текстуры, зум, перемещение, атаку клеток
