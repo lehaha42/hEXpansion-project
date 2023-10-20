@@ -36,8 +36,7 @@ class App:
 
     def render(self):
         self.screen.fill(BACKGROUND)
-        self.world.show() #testing
-        #pg.draw.circle(self.screen, WHITE, self.world.offset, self.world.scale) #testing
+        self.world.show()
         pg.display.flip()
 
     def run(self):
@@ -52,4 +51,4 @@ class App:
 if __name__ == '__main__':
     app = App()
     app.run()
-#сделать: меню, текстуры, зум, перемещение, атаку клеток
+#сделать: меню, текстуры, зум, атаку клеток
