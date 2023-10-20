@@ -29,6 +29,9 @@ class Cell:
     def atack(self):
         pass
 
+    def update(self):
+        pass
+
     def show(self, offset, pos, size):
         if self.exist:
             cell_pos = self.get_position(offset, pos, size)
