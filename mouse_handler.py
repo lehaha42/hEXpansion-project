@@ -13,6 +13,8 @@ class MouseHandler:
         self.pos = pg.mouse.get_pos()
         for event in events:
             if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    pass
                 if event.button == 3:
                     self.pressed = True
                 if event.button == 4:
