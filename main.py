@@ -2,6 +2,7 @@ from settings import *
 from world import World
 from mouse_handler import MouseHandler
 from button import Button
+from menu import Menu
 
 
 class App:
@@ -22,11 +23,14 @@ class App:
         self.mouse_handler = MouseHandler(self)
         self.curr_team = 'none'
         self.render_world = True
+        self.menus = []
 
-        def a(app):
-            app.render_world = not app.render_world
+        def set(app, val):
+            app.render_world = val
 
-        self.button = Button(self, a, args=[self], pos=[10, 10], size=[100, 100])
+        button1 = Button(self, set, args=[self, True], pos=[10, 10], size=[50, 50])
+        button2 = Button(self, set, args=[self, False], pos=[70, 10], size=[50, 50])
+        self.menus.append(Menu(self, [button1, button2], pos=[10, 10], size=[130, 70]))
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -34,7 +38,8 @@ class App:
         pg.display.set_caption(f'FPS: {self.clock.get_fps():.0f}')
 
     def click_update(self, pos):
-        self.button.click(pos)
+        for menu in self.menus:
+            menu.click(pos)
 
     def handle_events(self):
         events = pg.event.get()
@@ -48,7 +53,8 @@ class App:
         self.screen.fill(BACKGROUND)
         if self.render_world:
             self.world.show()
-        self.button.show()
+        for menu in self.menus:
+            menu.show()
         pg.display.flip()
 
     def run(self):
@@ -62,6 +68,5 @@ class App:
 
 if __name__ == '__main__':
     app = App()
-    app.render_world = False  # test
     app.run()
 # сделать: меню, текстуры, зум, атаку клеток
