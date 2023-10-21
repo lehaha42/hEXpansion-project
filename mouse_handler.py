@@ -14,7 +14,7 @@ class MouseHandler:
         for event in events:
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    pass
+                    self.app.click_update(self.pos)
                 if event.button == 3:
                     self.pressed = True
                 if event.button == 4:
@@ -28,5 +28,3 @@ class MouseHandler:
         if self.pressed:
             rel_pos = [self.pos[0] - self.prev_pos[0], self.pos[1] - self.prev_pos[1]]
             self.app.world.move_for(rel_pos)
-
-
