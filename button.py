@@ -14,9 +14,9 @@ class Button:
         if self.pos[0] < pos[0] < self.pos[0] + self.size[0] and self.pos[1] < pos[1] < self.pos[1] + self.size[1] and self.exist:
             self.func(*self.func_args)
 
-    def show(self, offset=[0, 0]):
+    def show(self):
         if self.exist:
-            pg.draw.rect(self.app.screen, WHITE, [self.pos[0] + offset[0], self.pos[1] + offset[1], *self.size], 3)
+            pg.draw.rect(self.app.screen, WHITE, [*self.pos, *self.size], 3)
 
     def set_exist(self, exist=True):
         self.exist = exist
