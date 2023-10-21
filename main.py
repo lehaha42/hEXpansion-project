@@ -1,6 +1,7 @@
 from settings import *
 from world import World
 from mouse_handler import MouseHandler
+from button import Button
 
 
 class App:
@@ -20,11 +21,20 @@ class App:
         self.world = World(self)
         self.mouse_handler = MouseHandler(self)
         self.curr_team = 'none'
+        self.render_world = True
+
+        def a(app):
+            app.render_world = not app.render_world
+
+        self.button = Button(self, a, args=[self], pos=[10, 10], size=[100, 100])
 
     def update(self):
         self.delta_time = self.clock.tick()
         self.time = self.clock.get_time() * 0.001
         pg.display.set_caption(f'FPS: {self.clock.get_fps():.0f}')
+
+    def click_update(self, pos):
+        self.button.click(pos)
 
     def handle_events(self):
         events = pg.event.get()
@@ -36,7 +46,9 @@ class App:
 
     def render(self):
         self.screen.fill(BACKGROUND)
-        self.world.show()
+        if self.render_world:
+            self.world.show()
+        self.button.show()
         pg.display.flip()
 
     def run(self):
@@ -50,5 +62,6 @@ class App:
 
 if __name__ == '__main__':
     app = App()
+    app.render_world = False  # test
     app.run()
-#сделать: меню, текстуры, зум, атаку клеток
+# сделать: меню, текстуры, зум, атаку клеток
