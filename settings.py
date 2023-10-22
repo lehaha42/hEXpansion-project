@@ -2,7 +2,7 @@ import pygame as pg
 import sys
 
 
-WIN_RES = [1200, 800]
+WIN_RES = [1920, 1080]
 NAME = 'hEXpansion'
 
 BLACK = (0, 0, 0)

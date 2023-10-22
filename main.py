@@ -4,6 +4,7 @@ from mouse_handler import MouseHandler
 from button import Button
 from menu import Menu
 from menus_builder import build_menus
+from texture import Texture
 
 
 class App:
@@ -25,6 +26,7 @@ class App:
         self.curr_team = 'none'
         self.render_world = True
         self.menus = build_menus(self)
+        self.texture = Texture(self)
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -50,6 +52,7 @@ class App:
             self.world.show()
         for menu in self.menus:
             menu.show()
+        self.screen.blit(self.texture.texture_0, [0, 0])
         pg.display.flip()
 
     def run(self):
