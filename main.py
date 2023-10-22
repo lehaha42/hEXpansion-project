@@ -25,13 +25,6 @@ class App:
         self.render_world = True
         self.menus = []
 
-        def set(app, val):
-            app.render_world = val
-
-        button1 = Button(self, set, args=[self, True], pos=[10, 10], size=[50, 50])
-        button2 = Button(self, set, args=[self, False], pos=[70, 10], size=[50, 50])
-        self.menus.append(Menu(self, [button1, button2], pos=[10, 10], size=[130, 70]))
-
     def update(self):
         self.delta_time = self.clock.tick()
         self.time = self.clock.get_time() * 0.001
@@ -40,6 +33,7 @@ class App:
     def click_update(self, pos):
         for menu in self.menus:
             menu.click(pos)
+        self.world.update(pos)
 
     def handle_events(self):
         events = pg.event.get()
@@ -69,4 +63,4 @@ class App:
 if __name__ == '__main__':
     app = App()
     app.run()
-# сделать: меню, текстуры, зум, атаку клеток
+# сделать: меню, текстуры, атаку клеток
