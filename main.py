@@ -3,6 +3,7 @@ from world import World
 from mouse_handler import MouseHandler
 from button import Button
 from menu import Menu
+from menus_builder import build_menus
 
 
 class App:
@@ -23,7 +24,7 @@ class App:
         self.mouse_handler = MouseHandler(self)
         self.curr_team = 'none'
         self.render_world = True
-        self.menus = []
+        self.menus = build_menus()
 
     def update(self):
         self.delta_time = self.clock.tick()
