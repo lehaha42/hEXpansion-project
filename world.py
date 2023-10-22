@@ -9,7 +9,7 @@ class World:
         self.app = app
         self.size = size * 2 + 1
         # create basic world
-        self.arr = [[Cell(self.app, self.basic_rule([i, j]))
+        self.arr = [[Cell(self.app, [i, j], offset, scale, self.basic_rule([i, j]))
                      for i in range(self.size)]
                     for j in range(self.size)]
         for i in range(self.size):
@@ -44,7 +44,7 @@ class World:
             for j in range(self.size):
                 self.arr[j][i].show(self.offset, [i, j], self.scale)
 
-    def update(self):
+    def update(self, pos):
         for i in range(self.size):
             for j in range(self.size):
-                self.arr[j][i].update()
+                self.arr[j][i].update(pos)
