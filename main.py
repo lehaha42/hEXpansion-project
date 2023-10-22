@@ -10,7 +10,7 @@ from texture import Texture
 class App:
     def __init__(self):
         pg.init()
-        self.screen = pg.display.set_mode(WIN_RES)
+        self.screen = pg.display.set_mode((WIN_RES))
         pg.display.set_caption(NAME)
 
         self.clock = pg.time.Clock()
@@ -66,5 +66,6 @@ class App:
 
 if __name__ == '__main__':
     app = App()
+    app.render_world = False
     app.run()
 # сделать: меню, текстуры, атаку клеток
