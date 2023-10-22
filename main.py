@@ -24,7 +24,7 @@ class App:
         self.mouse_handler = MouseHandler(self)
         self.curr_team = 'none'
         self.render_world = True
-        self.menus = build_menus()
+        self.menus = build_menus(self)
 
     def update(self):
         self.delta_time = self.clock.tick()

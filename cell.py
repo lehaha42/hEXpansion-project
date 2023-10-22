@@ -18,6 +18,7 @@ class Cell:
         self.exist = exist
         self.team = 'none'
         self.connect = [False, False, False]
+        self.selected = False
         self.button = Button(self.app, self.atack, [],
                              pos=[self.get_position(offset, pos, scale)[0] - scale*SCALE/2,
                                   self.get_position(offset, pos, scale)[1] - scale*SCALE/2],
