@@ -3,7 +3,7 @@ from cell import Cell
 
 
 class World:
-    def __init__(self, app, size=7, scale=50, offset=[50, 50]):
+    def __init__(self, app, size=7, scale=50, offset=[0, 0]):
         self.scale = scale
         self.offset = offset
         self.app = app

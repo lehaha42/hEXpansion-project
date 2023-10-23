@@ -5,12 +5,13 @@ from button import Button
 from menu import Menu
 from menus_builder import build_menus
 from texture import Texture
+from cell import Cell
 
 
 class App:
     def __init__(self):
         pg.init()
-        self.screen = pg.display.set_mode((WIN_RES))
+        self.screen = pg.display.set_mode(WIN_RES)
         pg.display.set_caption(NAME)
 
         self.clock = pg.time.Clock()
@@ -21,7 +22,9 @@ class App:
         self.on_init()
 
     def on_init(self):
-        self.world = World(self)
+        self.world = World(self, scale=70)
+        pos = Cell.get_position([0, 0], [self.world.size - 1, self.world.size - 1], self.world.scale)
+        self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
         self.mouse_handler = MouseHandler(self)
         self.curr_team = 'none'
         self.render_world = True
@@ -52,7 +55,9 @@ class App:
             self.world.show()
         for menu in self.menus:
             menu.show()
-        self.screen.blit(self.texture.texture_0, [0, 0])
+        #texture = self.texture.texture_0
+        #texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
+        #self.screen.blit(texture, [0, 0])
         pg.display.flip()
 
     def run(self):
@@ -69,6 +74,3 @@ if __name__ == '__main__':
     app.render_world = False
     app.run()
 # сделать: текстуры, атаку клеток
-
-# test
-Привет!
