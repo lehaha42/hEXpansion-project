@@ -2,7 +2,7 @@ from settings import *
 
 
 class Button:
-    def __init__(self, app, func=lambda args: None, args=[], pos=[0, 0], size=[0, 0]):
+    def __init__(self, app, func=lambda : None, args=[], pos=[0, 0], size=[0, 0]):
         self.app = app
         self.pos = pos
         self.size = size
