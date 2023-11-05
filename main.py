@@ -35,7 +35,7 @@ class App:
 
         self.curr_team = 'none'
         self.render_world = True
-        self.selected = self.world.arr[7][7]
+        self.selected = None  # self.world.arr[7][7]
 
     def update(self):
         self.delta_time = self.clock.tick()
