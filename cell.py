@@ -71,5 +71,6 @@ class Cell:
                 pg.draw.rect(self.app.screen, WHITE, [cell_pos[0] - size / 2 + 1,
                                                       cell_pos[1] - size / 2 + 1,
                                                       size, size], 2)
-            self.button.set_pos(new_pos=[self.get_position(offset, pos, size)[0] - size*SCALE/2,
-                                         self.get_position(offset, pos, size)[1] - size*SCALE/2])
+            self.button.pos = [self.get_position(offset, pos, size)[0] - size*SCALE/2,
+                               self.get_position(offset, pos, size)[1] - size*SCALE/2]
+            self.button.size = [size*SCALE, size*SCALE]
