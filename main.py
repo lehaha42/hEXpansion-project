@@ -22,14 +22,20 @@ class App:
         self.on_init()
 
     def on_init(self):
+
         self.world = World(self, scale=70)
         pos = Cell.get_position([0, 0], [self.world.size - 1, self.world.size - 1], self.world.scale)
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
+
         self.mouse_handler = MouseHandler(self)
+
+        self.menus = build_menus(self)
+
+        self.texture = Texture(self)
+
         self.curr_team = 'none'
         self.render_world = True
-        self.menus = build_menus(self)
-        self.texture = Texture(self)
+        self.selected = self.world.arr[7][7]
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -73,4 +79,5 @@ if __name__ == '__main__':
     app = App()
     app.render_world = False
     app.run()
-# сделать: текстуры, атаку клеток
+
+# сделать: текстуры, игровую логику
