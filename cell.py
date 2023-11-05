@@ -13,6 +13,9 @@ teams = {
 
 
 class Cell:
+    """
+    Cell object
+    """
     def __init__(self, app, pos, offset, scale, exist=True):
         self.app = app
         self.exist = exist
@@ -28,7 +31,14 @@ class Cell:
         self.connect = connects
 
     @staticmethod
-    def get_position(offset, pos, scale):
+    def get_position(offset: list, pos: list, scale: float):
+        """
+        calc position
+        :param offset: List[float, float]
+        :param pos: List[float, float]
+        :param scale: float
+        :return: List[float, float]
+        """
         i, j = pos
         return [(i + j/2)*scale + offset[0], j*scale + offset[1]]
 
@@ -38,7 +48,14 @@ class Cell:
     def update(self, pos):
         self.button.click(pos)
 
-    def show(self, offset, pos, size):
+    def show(self, offset: list, pos: list, size: float):
+        """
+        show cell
+        :param offset: List[float, float]
+        :param pos: List[float, float]
+        :param size: float
+        :return:
+        """
         if self.exist:
             cell_pos = self.get_position(offset, pos, size)
             neighbours = [[1, 0], [0, 1], [1, -1]]
@@ -50,5 +67,9 @@ class Cell:
             pg.draw.rect(self.app.screen, teams.get(self.team, GRAY), [cell_pos[0] - size * SCALE / 2 + 1,
                                                                        cell_pos[1] - size * SCALE / 2 + 1,
                                                                        size * SCALE, size * SCALE])
+            if self.app.selected == self:
+                pg.draw.rect(self.app.screen, WHITE, [cell_pos[0] - size / 2 + 1,
+                                                      cell_pos[1] - size / 2 + 1,
+                                                      size, size], 2)
             self.button.set_pos(new_pos=[self.get_position(offset, pos, size)[0] - size*SCALE/2,
                                          self.get_position(offset, pos, size)[1] - size*SCALE/2])
