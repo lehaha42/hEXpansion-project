@@ -12,4 +12,11 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
+TEAMS = {
+    1: RED,
+    2: BLUE,
+    3: GREEN,
+    0: GRAY
+}
+
 BACKGROUND = BLACK
