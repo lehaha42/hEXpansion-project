@@ -6,7 +6,7 @@ class Menu:
     def __init__(self, app, buttons=[], pos=[0, 0], size=[0, 0]):
         self.app = app
         for button in buttons:
-            button.set_pos([button.pos[0] + pos[0], button.pos[1] + pos[1]])
+            button.pos = [button.pos[0] + pos[0], button.pos[1] + pos[1]]
         self.buttons = buttons
         self.pos = pos
         self.size = size
