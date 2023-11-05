@@ -4,12 +4,7 @@ from button import Button
 
 SCALE = 0.6
 
-teams = {
-    'red': RED,
-    'blue': BLUE,
-    'green': GREEN,
-    'none': GRAY
-}
+
 
 
 class Cell:
