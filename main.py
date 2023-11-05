@@ -66,9 +66,9 @@ class App:
             self.world.show()
         for menu in self.menus:
             menu.show()
-        #texture = self.texture.texture_0
-        #texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
-        #self.screen.blit(texture, [0, 0])
+        # texture = self.texture.texture_0
+        # texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
+        # self.screen.blit(texture, [0, 0])
         pg.display.flip()
 
     def run(self):
@@ -85,4 +85,18 @@ if __name__ == '__main__':
     app.render_world = False
     app.run()
 
-# сделать: текстуры, игровую логику
+"""
+сделать:
+    текстуры:
+        базовая работа с текстурой
+        текстуру клеток
+    игровую логику:
+        ходы:
+            выбор своей клетки
+            распространение сил
+            смена команды
+        победа:
+            подсчет оставшихся клеток
+            смэрть команды
+        'ии' противника(рандом/алгоритм)
+"""
