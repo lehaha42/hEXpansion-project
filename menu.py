@@ -22,6 +22,3 @@ class Menu:
             pg.draw.rect(self.app.screen, WHITE, [*self.pos, *self.size], 3)
             for button in self.buttons:
                 button.show()
-
-    def set_exist(self, exist=True):
-        self.exist = exist
