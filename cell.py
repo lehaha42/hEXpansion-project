@@ -17,7 +17,7 @@ class Cell:
         self.team = 'none'
         self.connect = [False, False, False]
         self.selected = False
-        self.button = Button(self.app, self.atack, [],
+        self.button = Button(self.app,
                              pos=[self.get_position(offset, pos, scale)[0] - scale*SCALE/2,
                                   self.get_position(offset, pos, scale)[1] - scale*SCALE/2],
                              size=[scale*SCALE, scale*SCALE])
@@ -36,9 +36,6 @@ class Cell:
         """
         i, j = pos
         return [(i + j/2)*scale + offset[0], j*scale + offset[1]]
-
-    def atack(self):
-        self.team = 'green'
 
     def update(self, pos):
         self.button.click(pos)
