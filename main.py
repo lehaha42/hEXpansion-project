@@ -37,9 +37,8 @@ class App:
         self.render_world = True
         self.selected = None  # self.world.arr[7][7]
 
-    @staticmethod
-    def text(pos, scale, text):
-        pass
+    def text(self, pos, scale, text):
+        self.screen.blit(pg.font.Font(None, scale).render(text, True, WHITE), pos)
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -68,7 +67,6 @@ class App:
         # texture = self.texture.texture_0
         # texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
         # self.screen.blit(texture, [0, 0])
-        self.text([50, 50], 50, '0123456789')
         pg.display.flip()
 
     def run(self):
