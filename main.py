@@ -6,7 +6,6 @@ from menu import Menu
 from menus_builder import build_menus
 from texture import Texture
 from cell import Cell
-from text import Text
 
 
 class App:
@@ -34,13 +33,13 @@ class App:
 
         self.texture = Texture(self)
 
-        self.Text = Text(self.screen)
-        self.text = self.Text.text
-        self.char = self.Text.char
-
         self.curr_team = 0
         self.render_world = True
         self.selected = None  # self.world.arr[7][7]
+
+    @staticmethod
+    def text(pos, scale, text):
+        pass
 
     def update(self):
         self.delta_time = self.clock.tick()
@@ -69,6 +68,7 @@ class App:
         # texture = self.texture.texture_0
         # texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
         # self.screen.blit(texture, [0, 0])
+        self.text([50, 50], 50, '0123456789')
         pg.display.flip()
 
     def run(self):
