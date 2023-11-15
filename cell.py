@@ -6,7 +6,7 @@ SCALE = 0.6
 
 
 class Cell:
-    def __init__(self, app: App, pos: list, offset: list, scale: float, exist=True):
+    def __init__(self, app, pos: list, offset: list, scale: float, exist=True):
         self.app = app
         self.exist = exist
         self.team = 0

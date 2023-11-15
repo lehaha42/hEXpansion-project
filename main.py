@@ -36,6 +36,7 @@ class App:
         self.curr_team = 0
         self.render_world = False
         self.selected = None  # self.world.arr[7][7]
+        self.background = self.texture.load('background.png')
 
     def text(self, pos, scale, text):
         self.screen.blit(pg.font.Font(None, scale).render(text, True, WHITE), pos)
@@ -59,15 +60,17 @@ class App:
 
         self.mouse_handler.update(events)
 
+    def place_texture(self, texture, pos, size):
+        self.screen.blit(pg.transform.scale(texture, size), pos)
+
     def render(self):
-        self.screen.fill(BACKGROUND)
+        #self.screen.fill(BACKGROUND)
+        self.place_texture(self.texture.texture_background, [0, 0], WIN_RES)
         if self.render_world:
             self.world.show()
         for menu in self.menus:
             menu.show()
-        # texture = self.texture.texture_0
-        # texture = pg.transform.scale(texture, [self.world.scale, self.world.scale])
-        # self.screen.blit(texture, [0, 0])
+
         pg.display.flip()
 
     def run(self):
