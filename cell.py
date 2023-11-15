@@ -5,8 +5,6 @@ from button import Button
 SCALE = 0.6
 
 
-
-
 class Cell:
     """
     Cell object
@@ -14,10 +12,10 @@ class Cell:
     def __init__(self, app, pos, offset, scale, exist=True):
         self.app = app
         self.exist = exist
-        self.team = 'none'
+        self.team = 0
         self.connect = [False, False, False]
         self.selected = False
-        self.button = Button(self.app,
+        self.button = Button(self.app, setattr, [self, 'team', 3],
                              pos=[self.get_position(offset, pos, scale)[0] - scale*SCALE/2,
                                   self.get_position(offset, pos, scale)[1] - scale*SCALE/2],
                              size=[scale*SCALE, scale*SCALE])
