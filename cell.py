@@ -6,10 +6,7 @@ SCALE = 0.6
 
 
 class Cell:
-    """
-    Cell object
-    """
-    def __init__(self, app, pos, offset, scale, exist=True):
+    def __init__(self, app: App, pos: list, offset: list, scale: float, exist=True):
         self.app = app
         self.exist = exist
         self.team = 0
@@ -25,27 +22,13 @@ class Cell:
 
     @staticmethod
     def get_position(offset: list, pos: list, scale: float):
-        """
-        calc position
-        :param offset: List[float, float]
-        :param pos: List[float, float]
-        :param scale: float
-        :return: List[float, float]
-        """
         i, j = pos
         return [(i + j/2)*scale + offset[0], j*scale + offset[1]]
 
-    def update(self, pos):
+    def update(self, pos: list):
         self.button.click(pos)
 
     def show(self, offset: list, pos: list, size: float):
-        """
-        show cell
-        :param offset: List[float, float]
-        :param pos: List[float, float]
-        :param size: float
-        :return:
-        """
         if self.exist:
             cell_pos = self.get_position(offset, pos, size)
             neighbours = [[1, 0], [0, 1], [1, -1]]

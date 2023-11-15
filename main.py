@@ -34,7 +34,7 @@ class App:
         self.texture = Texture(self)
 
         self.curr_team = 0
-        self.render_world = True
+        self.render_world = False
         self.selected = None  # self.world.arr[7][7]
 
     def text(self, pos, scale, text):
@@ -48,7 +48,8 @@ class App:
     def click_update(self, pos):
         for menu in self.menus:
             menu.click(pos)
-        self.world.update(pos)
+        if self.render_world:
+            self.world.update(pos)
 
     def handle_events(self):
         events = pg.event.get()
@@ -80,7 +81,6 @@ class App:
 
 if __name__ == '__main__':
     app = App()
-    app.render_world = False
     app.run()
 
 """

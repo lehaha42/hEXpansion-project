@@ -5,16 +5,11 @@ from button import Button
 
 def build_menus(app):
 
-    def f2(app):
-        app.menus[0].exist = False
-        app.render_world = True
+    def f2(ap):
+        ap.menus[0].exist = False
+        ap.render_world = True
 
     def setattrs(*args : tuple):
-        """
-        multiple settatr()
-        :param args: tuple
-        :return:
-        """
         for arg in args:
             setattr(*arg)
 
