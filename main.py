@@ -49,10 +49,13 @@ class App:
         elif self.selected is cell:
             self.selected = None
         else:
-            pos = cell.pos
-            neighbours = [[-1, 0], [0, -1], [-1, 1]]
+            x, y = cell.pos
+            neigh = [[-1, 0], [0, -1], [-1, 1]]
             for i in range(3):
-                if self.world.is_exist([]):
+                if self.world.is_exist([x, y]):
+                    pass
+            for i in range(3):
+                if self.world.is_exist([x, y]):
                     pass
 
     def text(self, pos: list, scale: float, text: str):
