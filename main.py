@@ -46,7 +46,7 @@ class App:
         self.time = self.clock.get_time() * 0.001
         pg.display.set_caption(f'FPS: {self.clock.get_fps():.0f}')
 
-    def click_update(self, pos):
+    def click_update(self, pos: list):
         for menu in self.menus:
             menu.click(pos)
         if self.render_world:
@@ -60,8 +60,13 @@ class App:
 
         self.mouse_handler.update(events)
 
-    def place_texture(self, texture, pos, size):
-        self.screen.blit(pg.transform.scale(texture, size), pos)
+    def place_texture(self, texture, pos: list):
+        self.screen.blit(texture, pos)
+
+    def scale_texture(self, texture, size: float):
+        texture = pg.transform.scale(texture, size)
+
+        return texture
 
     def render(self):
         #self.screen.fill(BACKGROUND)

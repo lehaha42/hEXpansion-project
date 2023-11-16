@@ -12,7 +12,7 @@ class Menu:
         self.size = size
         self.exist = True
 
-    def click(self, pos):
+    def click(self, pos: list):
         if self.exist:
             for button in self.buttons:
                 button.click(pos)

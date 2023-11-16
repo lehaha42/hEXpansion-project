@@ -8,7 +8,7 @@ class Texture:
         self.texture_0 = self.load('test.png')
         self.texture_background = self.load('background.png')
 
-    def load(self, file_name):
+    def load(self, file_name: str):
         texture = pg.image.load(f'textures/{file_name}')
 
         return texture

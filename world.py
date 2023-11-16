@@ -16,18 +16,18 @@ class World:
             for j in range(self.size):
                 self.arr[i][j].update_connections([1, 1, 1])
 
-    def basic_rule(self, pos):
+    def basic_rule(self, pos: list):
         i, j = pos
         return self.size * 1.5 - 1 > i + j >= self.size / 2 - 1
 
-    def is_exist(self, pos):
+    def is_exist(self, pos: list):
         return self.basic_rule(pos) and 0 <= pos[0] < self.size and 0 <= pos[1] < self.size
 
-    def move_for(self, pos):
+    def move_for(self, pos: list):
         self.offset = [max(min(self.offset[0] + pos[0], WIN_RES[0]), 0),
                        max(min(self.offset[1] + pos[1], WIN_RES[1]), 0)]
 
-    def zoom(self, direct, pos):
+    def zoom(self, direct: str, pos: list):
         prev_scale = self.scale
 
         if direct == 'in':
@@ -45,7 +45,7 @@ class World:
             for j in range(self.size):
                 self.arr[j][i].show(self.offset, [i, j], self.scale)
 
-    def update(self, pos):
+    def update(self, pos: list):
         for i in range(self.size):
             for j in range(self.size):
                 self.arr[j][i].update(pos)

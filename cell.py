@@ -17,7 +17,7 @@ class Cell:
                                   self.get_position(offset, pos, scale)[1] - scale*SCALE/2],
                              size=[scale*SCALE, scale*SCALE])
 
-    def update_connections(self, connects):
+    def update_connections(self, connects: list):
         self.connect = connects
 
     @staticmethod
@@ -34,12 +34,15 @@ class Cell:
             neighbours = [[1, 0], [0, 1], [1, -1]]
             for i in range(3):
                 if self.connect[i]:
-                    neigh_pos = self.get_position(offset, [pos[0] + neighbours[i][0], pos[1] + neighbours[i][1]], size)
                     if self.app.world.is_exist([pos[0] + neighbours[i][0], pos[1] + neighbours[i][1]]):
+                        neigh_pos = self.get_position(offset, [pos[0] + neighbours[i][0], pos[1] + neighbours[i][1]], size)
                         pg.draw.line(self.app.screen, GRAY, cell_pos, neigh_pos, int(0.1 * size) + 1)
             pg.draw.rect(self.app.screen, TEAMS.get(self.team, GRAY), [cell_pos[0] - size * SCALE / 2 + 1,
                                                                        cell_pos[1] - size * SCALE / 2 + 1,
                                                                        size * SCALE, size * SCALE])
+            if self.amount > 0:
+                self.app.text([cell_pos[0] - 15,
+                               cell_pos[1] - 15], 60, str(self.amount))
             if self.app.selected == self:
                 pg.draw.rect(self.app.screen, WHITE, [cell_pos[0] - size / 2 + 1,
                                                       cell_pos[1] - size / 2 + 1,
