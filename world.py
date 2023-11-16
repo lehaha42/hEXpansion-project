@@ -24,8 +24,8 @@ class World:
         return self.basic_rule(pos) and 0 <= pos[0] < self.size and 0 <= pos[1] < self.size
 
     def move_for(self, pos: list):
-        self.offset = [max(min(self.offset[0] + pos[0], WIN_RES[0]), 0),
-                       max(min(self.offset[1] + pos[1], WIN_RES[1]), 0)]
+        self.offset = [max(min(self.offset[0] + pos[0], WIN_RES[0] - 400), -800),
+                       max(min(self.offset[1] + pos[1], WIN_RES[1] - 400), -800)]
 
     def zoom(self, direct: str, pos: list):
         prev_scale = self.scale

@@ -43,8 +43,8 @@ class Cell:
                                                                        cell_pos[1] - size * SCALE / 2 + 1,
                                                                        size * SCALE, size * SCALE])
             if self.amount > 0:
-                self.app.text([cell_pos[0] - 15,
-                               cell_pos[1] - 15], 60, str(self.amount))
+                self.app.text([cell_pos[0] - size * 0.2,  # * (0.2 + 0.1 * (len(str(self.amount)) - 1))
+                               cell_pos[1] - size * 0.28], size, str(self.amount))
             if self.app.selected == self:
                 pg.draw.rect(self.app.screen, WHITE, [cell_pos[0] - size / 2 + 1,
                                                       cell_pos[1] - size / 2 + 1,

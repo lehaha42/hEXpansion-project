@@ -28,7 +28,9 @@ class App:
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
 
         self.world.arr[7][7].team = 3
-        self.world.arr[7][7].amount = 2
+        self.world.arr[7][7].amount = 5
+        self.world.arr[5][7].team = 2
+        self.world.arr[5][7].amount = 5
 
         self.mouse_handler = MouseHandler(self)
 
@@ -50,13 +52,36 @@ class App:
             self.selected = None
         else:
             x, y = cell.pos
-            neigh = [[-1, 0], [0, -1], [-1, 1]]
-            for i in range(3):
-                if self.world.is_exist([x, y]):
-                    pass
-            for i in range(3):
-                if self.world.is_exist([x, y]):
-                    pass
+            neigh = [[1, 0], [0, 1], [1, -1]]
+            for i in range(len(neigh)):
+                if self.world.is_exist([x + neigh[i][0], y + neigh[i][1]]):
+                    if self.selected.pos == [x + neigh[i][0], y + neigh[i][1]] and \
+                            cell.connect[i]:
+                        self.logic(cell)
+                if self.world.is_exist([x - neigh[i][0], y - neigh[i][1]]):
+                    if self.selected.pos == [x - neigh[i][0], y - neigh[i][1]] and \
+                            self.selected.connect[i]:
+                        self.logic(cell)
+
+    def logic(self, cell: Cell):
+        if self.selected.amount > 1:
+            if cell.team == 0:
+                cell.amount = self.selected.amount - 1
+                cell.team = self.curr_team
+                self.selected.amount = 1
+                self.selected = cell
+            elif cell.team != self.curr_team:
+                if self.selected.amount > cell.amount:
+                    cell.amount = self.selected.amount - cell.amount
+                    cell.team = self.curr_team
+                    self.selected.amount = 1
+                    self.selected = cell
+                elif self.selected.amount == cell.amount:
+                    cell.amount = 1
+                    self.selected.amount = 1
+                else:
+                    cell.amount = cell.amount - self.selected.amount
+                    self.selected.amount = 1
 
     def text(self, pos: list, scale: float, text: str):
         self.screen.blit(pg.font.Font(None, scale).render(text, True, WHITE), pos)
@@ -108,6 +133,7 @@ class App:
 
 if __name__ == '__main__':
     app = App()
+    app.world.arr[7][7].connect = [1,1,1]
     app.run()
 
 """
