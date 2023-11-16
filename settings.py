@@ -19,4 +19,4 @@ TEAMS = {
     0: GRAY
 }
 
-BACKGROUND = (30, 80, 50)
+BACKGROUND = (30, 80, 120)

@@ -8,11 +8,13 @@ SCALE = 0.6
 class Cell:
     def __init__(self, app, pos: list, offset: list, scale: float, exist=True):
         self.app = app
+        self.pos = pos
         self.exist = exist
         self.team = 0
+        self.amount = 0
         self.connect = [False, False, False]
         self.selected = False
-        self.button = Button(self.app, setattr, [self, 'team', 3],
+        self.button = Button(self.app, self.app.update_logic, [self],
                              pos=[self.get_position(offset, pos, scale)[0] - scale*SCALE/2,
                                   self.get_position(offset, pos, scale)[1] - scale*SCALE/2],
                              size=[scale*SCALE, scale*SCALE])

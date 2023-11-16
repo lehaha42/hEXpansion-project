@@ -27,18 +27,35 @@ class App:
         pos = Cell.get_position([0, 0], [self.world.size - 1, self.world.size - 1], self.world.scale)
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
 
+        self.world.arr[7][7].team = 3
+        self.world.arr[7][7].amount = 2
+
         self.mouse_handler = MouseHandler(self)
 
         self.menus = build_menus(self)
 
         self.texture = Texture(self)
 
-        self.curr_team = 0
+        self.curr_team = 3
+        self.curr_state = 0
+        self.our_team = 3
         self.render_world = False
         self.selected = None  # self.world.arr[7][7]
-        self.background = self.texture.load('background.png')
 
-    def text(self, pos, scale, text):
+    def update_logic(self, cell: Cell):
+        if self.selected is None:
+            if cell.team == self.our_team == self.curr_team:
+                self.selected = cell
+        elif self.selected is cell:
+            self.selected = None
+        else:
+            pos = cell.pos
+            neighbours = [[-1, 0], [0, -1], [-1, 1]]
+            for i in range(3):
+                if self.world.is_exist([]):
+                    pass
+
+    def text(self, pos: list, scale: float, text: str):
         self.screen.blit(pg.font.Font(None, scale).render(text, True, WHITE), pos)
 
     def update(self):
@@ -69,8 +86,7 @@ class App:
         return texture
 
     def render(self):
-        #self.screen.fill(BACKGROUND)
-        self.place_texture(self.texture.texture_background, [0, 0], WIN_RES)
+        self.screen.fill(BACKGROUND)
         if self.render_world:
             self.world.show()
         for menu in self.menus:
