@@ -27,10 +27,10 @@ class App:
         pos = Cell.get_position([0, 0], [self.world.size - 1, self.world.size - 1], self.world.scale)
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
 
-        self.world.arr[7][7].team = 3
-        self.world.arr[7][7].amount = 25
-        self.world.arr[5][7].team = 2
-        self.world.arr[5][7].amount = 5
+        self.world.arr[7][14].team = 3
+        self.world.arr[7][14].amount = 5
+        self.world.arr[0][7].team = 2
+        self.world.arr[0][7].amount = 5
         self.world.arr[5][5].team = 1
         self.world.arr[5][5].amount = 5
 
@@ -44,13 +44,14 @@ class App:
         self.curr_state = 0
         self.our_team = 3
         self.logic_state = 0
+        self.team_power = 0
         self.render_world = False
         self.selected = None  # self.world.arr[7][7]
 
     def update_logic(self, cell: Cell):
         if self.logic_state == 0:
             if self.selected is None:
-                if cell.team == self.our_team == self.curr_team:
+                if cell.team == self.curr_team:
                     self.selected = cell
             elif self.selected is cell:
                 self.selected = None
@@ -66,9 +67,21 @@ class App:
                         if self.selected.pos == [x - neigh[i][0], y - neigh[i][1]] and \
                                 self.selected.connect[i]:
                             self.attack_logic(cell)
-
+            if self.world.done_team(self.curr_team):
+                self.team_power = self.world.count_cells(self.curr_team)
+                self.logic_state = 1
+                self.selected = None
         else:
-            pass
+            if self.team_power > 0:
+                if cell.team == self.curr_team:
+                    cell.amount += 1
+                    self.team_power += -1
+                    if self.team_power == 0:
+                        self.logic_state = 0
+                        self.curr_team = self.curr_team % 3 + 1
+            else:
+                self.logic_state = 0
+                self.curr_team = self.curr_team % 3 + 1
 
     def attack_logic(self, cell: Cell):
         if self.selected.amount > 1:
@@ -130,6 +143,7 @@ class App:
             pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1]-20, p1, 20])
             pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1]-20, p2, 20])
             pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1]-20, WIN_RES[0], 20])
+            pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 50, 50])
         for menu in self.menus:
             menu.show()
 

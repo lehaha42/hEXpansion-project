@@ -48,6 +48,21 @@ class World:
                     out[cell.team - 1] += cell.amount
         return out
 
+    def count_cells(self, team):
+        out = 0
+        for row in self.arr:
+            for cell in row:
+                if cell.team == team:
+                    out += 1
+        return out
+
+    def done_team(self, team):
+        for row in self.arr:
+            for cell in row:
+                if cell.team == team and cell.amount > 1:
+                    return False
+        return True
+
     def show(self):
         for i in range(self.size):
             for j in range(self.size):
