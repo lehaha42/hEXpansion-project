@@ -40,6 +40,14 @@ class World:
 
         self.move_for(move_pos)
 
+    def count_teams(self):
+        out = [0, 0, 0]
+        for row in self.arr:
+            for cell in row:
+                if cell.exist and cell.team != 0:
+                    out[cell.team - 1] += cell.amount
+        return out
+
     def show(self):
         for i in range(self.size):
             for j in range(self.size):

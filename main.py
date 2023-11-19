@@ -28,9 +28,11 @@ class App:
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
 
         self.world.arr[7][7].team = 3
-        self.world.arr[7][7].amount = 5
+        self.world.arr[7][7].amount = 25
         self.world.arr[5][7].team = 2
         self.world.arr[5][7].amount = 5
+        self.world.arr[5][5].team = 1
+        self.world.arr[5][5].amount = 5
 
         self.mouse_handler = MouseHandler(self)
 
@@ -41,29 +43,34 @@ class App:
         self.curr_team = 3
         self.curr_state = 0
         self.our_team = 3
+        self.logic_state = 0
         self.render_world = False
         self.selected = None  # self.world.arr[7][7]
 
     def update_logic(self, cell: Cell):
-        if self.selected is None:
-            if cell.team == self.our_team == self.curr_team:
-                self.selected = cell
-        elif self.selected is cell:
-            self.selected = None
-        else:
-            x, y = cell.pos
-            neigh = [[1, 0], [0, 1], [1, -1]]
-            for i in range(len(neigh)):
-                if self.world.is_exist([x + neigh[i][0], y + neigh[i][1]]):
-                    if self.selected.pos == [x + neigh[i][0], y + neigh[i][1]] and \
-                            cell.connect[i]:
-                        self.logic(cell)
-                if self.world.is_exist([x - neigh[i][0], y - neigh[i][1]]):
-                    if self.selected.pos == [x - neigh[i][0], y - neigh[i][1]] and \
-                            self.selected.connect[i]:
-                        self.logic(cell)
+        if self.logic_state == 0:
+            if self.selected is None:
+                if cell.team == self.our_team == self.curr_team:
+                    self.selected = cell
+            elif self.selected is cell:
+                self.selected = None
+            else:
+                x, y = cell.pos
+                neigh = [[1, 0], [0, 1], [1, -1]]
+                for i in range(len(neigh)):
+                    if self.world.is_exist([x + neigh[i][0], y + neigh[i][1]]):
+                        if self.selected.pos == [x + neigh[i][0], y + neigh[i][1]] and \
+                                cell.connect[i]:
+                            self.attack_logic(cell)
+                    if self.world.is_exist([x - neigh[i][0], y - neigh[i][1]]):
+                        if self.selected.pos == [x - neigh[i][0], y - neigh[i][1]] and \
+                                self.selected.connect[i]:
+                            self.attack_logic(cell)
 
-    def logic(self, cell: Cell):
+        else:
+            pass
+
+    def attack_logic(self, cell: Cell):
         if self.selected.amount > 1:
             if cell.team == 0:
                 cell.amount = self.selected.amount - 1
@@ -117,6 +124,12 @@ class App:
         self.screen.fill(BACKGROUND)
         if self.render_world:
             self.world.show()
+            teams = self.world.count_teams()
+            p1 = (teams[0] / sum(teams)) * WIN_RES[0]
+            p2 = (teams[1] / sum(teams)) * WIN_RES[0]
+            pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1]-20, p1, 20])
+            pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1]-20, p2, 20])
+            pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1]-20, WIN_RES[0], 20])
         for menu in self.menus:
             menu.show()
 
@@ -139,15 +152,15 @@ if __name__ == '__main__':
 """
 сделать:
     текстуры:
-        базовая работа с текстурой
+        базовая работа с текстурой     -done
         текстуру клеток
     игровую логику:
         ходы:
-            выбор своей клетки
-            распространение сил
+            выбор своей клетки     -done
+            распространение сил     -done
             смена команды
         победа:
-            подсчет оставшихся клеток
+            подсчет оставшихся клеток     -done
             смэрть команды
         'ии' противника(рандом/алгоритм)
 """
