@@ -31,8 +31,8 @@ class App:
         self.world.arr[7][14].amount = 5
         self.world.arr[0][7].team = 2
         self.world.arr[0][7].amount = 5
-        self.world.arr[5][5].team = 1
-        self.world.arr[5][5].amount = 5
+        self.world.arr[14][0].team = 1
+        self.world.arr[14][0].amount = 5
 
         self.mouse_handler = MouseHandler(self)
 
@@ -41,7 +41,6 @@ class App:
         self.texture = Texture(self)
 
         self.curr_team = 3
-        self.curr_state = 0
         self.our_team = 3
         self.logic_state = 0
         self.team_power = 0
@@ -138,12 +137,18 @@ class App:
         if self.render_world:
             self.world.show()
             teams = self.world.count_teams()
-            p1 = (teams[0] / sum(teams)) * WIN_RES[0]
-            p2 = (teams[1] / sum(teams)) * WIN_RES[0]
-            pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1]-20, p1, 20])
-            pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1]-20, p2, 20])
-            pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1]-20, WIN_RES[0], 20])
+            try:
+                p1 = (teams[0] / sum(teams)) * WIN_RES[0]
+                p2 = (teams[1] / sum(teams)) * WIN_RES[0]
+                pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1]-20, p1, 20])
+                pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1]-20, p2, 20])
+                pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1]-20, WIN_RES[0], 20])
+            except:
+                pass
             pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 50, 50])
+            if self.logic_state:
+                pg.draw.rect(self.screen, WHITE, [50, 50, 50, 50], 2)
+            self.text([60, 60,], 40, str(self.team_power))
         for menu in self.menus:
             menu.show()
 
@@ -160,7 +165,6 @@ class App:
 
 if __name__ == '__main__':
     app = App()
-    app.world.arr[7][7].connect = [1,1,1]
     app.run()
 
 """
