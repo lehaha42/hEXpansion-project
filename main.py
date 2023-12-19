@@ -148,7 +148,7 @@ class App:
             pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 50, 50])
             if self.logic_state:
                 pg.draw.rect(self.screen, WHITE, [50, 50, 50, 50], 2)
-            self.text([60, 60,], 40, str(self.team_power))
+            self.text([60, 60], 40, str(self.team_power))
         for menu in self.menus:
             menu.show()
 
