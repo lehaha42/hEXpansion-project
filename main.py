@@ -28,11 +28,11 @@ class App:
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
 
         self.world.arr[7][14].team = 3
-        self.world.arr[7][14].amount = 5
+        self.world.arr[7][14].amount = 3
         self.world.arr[0][7].team = 2
-        self.world.arr[0][7].amount = 5
+        self.world.arr[0][7].amount = 3
         self.world.arr[14][0].team = 1
-        self.world.arr[14][0].amount = 5
+        self.world.arr[14][0].amount = 3
 
         self.mouse_handler = MouseHandler(self)
 
@@ -73,8 +73,9 @@ class App:
         else:
             if self.team_power > 0:
                 if cell.team == self.curr_team:
-                    cell.amount += 1
-                    self.team_power += -1
+                    if cell.amount < cell.limit:
+                        cell.amount += 1
+                        self.team_power += -1
                     if self.team_power == 0:
                         self.logic_state = 0
                         self.curr_team = self.curr_team % 3 + 1
@@ -174,7 +175,7 @@ if __name__ == '__main__':
         ходы: -in progress
             выбор своей клетки     -done
             распространение сил     -done
-            смена команды        -in progress
+            команда игрока        -in progress
         победа:        -in progress
             подсчет оставшихся клеток     -done
             смэрть команды

@@ -23,6 +23,8 @@ class World:
     def is_exist(self, pos: list):
         return self.basic_rule(pos) and 0 <= pos[0] < self.size and 0 <= pos[1] < self.size
 
+    #def can_move(self, ):
+
     def move_for(self, pos: list):
         self.offset = [max(min(self.offset[0] + pos[0], WIN_RES[0] - 400), -800),
                        max(min(self.offset[1] + pos[1], WIN_RES[1] - 400), -800)]
@@ -42,24 +44,24 @@ class World:
 
     def count_teams(self):
         out = [0, 0, 0]
-        for row in self.arr:
-            for cell in row:
-                if cell.exist and cell.team != 0:
-                    out[cell.team - 1] += cell.amount
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.arr[i][j].exist and self.arr[i][j].team != 0:
+                    out[self.arr[i][j].team - 1] += self.arr[i][j].amount
         return out
 
     def count_cells(self, team):
         out = 0
-        for row in self.arr:
-            for cell in row:
-                if cell.team == team:
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.arr[i][j].team == team:
                     out += 1
         return out
 
     def done_team(self, team):
-        for row in self.arr:
-            for cell in row:
-                if cell.is_valid(team):
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.arr[i][j].is_valid(team):
                     return False
         return True
 
@@ -71,4 +73,4 @@ class World:
     def update(self, pos: list):
         for i in range(self.size):
             for j in range(self.size):
-                self.arr[j][i].update(pos)
+                self.arr[i][j].update(pos)

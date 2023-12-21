@@ -12,6 +12,7 @@ class Cell:
         self.exist = exist
         self.team = 0
         self.amount = 0
+        self.limit = 8
         self.connect = [False, False, False]
         self.selected = False
         self.button = Button(self.app, self.app.update_logic, [self],
@@ -22,7 +23,7 @@ class Cell:
     def update_connections(self, connects: list):
         self.connect = connects
 
-    def is_valid(self, team):
+    def is_valid(self, team: tuple):
         if self.team == team and self.amount > 1:
             return True
         return False
