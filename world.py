@@ -59,7 +59,7 @@ class World:
     def done_team(self, team):
         for row in self.arr:
             for cell in row:
-                if cell.team == team and cell.amount > 1:
+                if cell.is_valid(team):
                     return False
         return True
 

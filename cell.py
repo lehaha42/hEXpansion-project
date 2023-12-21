@@ -22,6 +22,11 @@ class Cell:
     def update_connections(self, connects: list):
         self.connect = connects
 
+    def is_valid(self, team):
+        if self.team == team and self.amount > 1:
+            return True
+        return False
+
     @staticmethod
     def get_position(offset: list, pos: list, scale: float):
         i, j = pos
