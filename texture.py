@@ -9,6 +9,8 @@ class Texture:
 
         self.load('test.png')
         self.load('background.png')
+        self.load('play_button.png')
+        self.load('esc_button.png')
 
     def get_texture(self, name):
         return self.textures.get(name) or None

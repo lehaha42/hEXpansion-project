@@ -19,6 +19,7 @@ def build_menus(app):
 
     return [
         Menu(app, [
-            Button(app, f2, [app], pos=[810, 600], size=[300, 75])
+            Button(app, f2, [app],                           pos=[810, 550], size=[300, 75], texture_name='play_button.png'),
+            Button(app, setattr, [app, 'is_running', False], pos=[810, 650], size=[300, 75], texture_name='esc_button.png')
         ], pos=[0, 0], size=WIN_RES)
     ]
