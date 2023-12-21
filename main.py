@@ -150,10 +150,13 @@ class App:
                 pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1] - 20, p1, 20])
                 pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1] - 20, p2, 20])
                 pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1] - 20, WIN_RES[0] - p2 - p1, 20])
-            pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 50, 50])
+            pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 430, 100])
             if self.logic_state:
-                pg.draw.rect(self.screen, WHITE, [50, 50, 50, 50], 2)
-            self.text([60, 60], 40, str(self.team_power))
+                pg.draw.rect(self.screen, WHITE, [50, 50, 430, 100], 2)
+                self.text([60, 60], 40, 'распределите силу по клеткам')
+                self.text([60, 100], 40, 'силы осталось: ' + str(self.team_power))
+            else:
+                self.text([60, 60], 40, 'атакуйте соседние клетки')
         for menu in self.menus:
             menu.show()
 

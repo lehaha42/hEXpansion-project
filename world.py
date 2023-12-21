@@ -9,7 +9,7 @@ class World:
         self.offset = offset
         self.app = app
         self.size = size * 2 + 1
-        self.button = Button(self.app, self.app.skip_team, pos=[50, 50], size=[50, 50])
+        self.button = Button(self.app, self.app.skip_team, pos=[50, 50], size=[430, 100])
         # create basic world
         self.arr = [[Cell(self.app, [i, j], offset, scale, self.basic_rule([i, j]))
                      for i in range(self.size)]
