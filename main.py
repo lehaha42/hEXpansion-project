@@ -45,7 +45,7 @@ class App:
         self.logic_state = 0
         self.team_power = 0
         self.render_world = False
-        self.selected = None  # self.world.arr[7][7]
+        self.selected = self.world.arr[7][7]
 
     def update_logic(self, cell: Cell):
         if self.logic_state == 0:
@@ -188,5 +188,5 @@ if __name__ == '__main__':
         победа:        -in progress
             подсчет оставшихся клеток     -done
             смэрть команды
-        'ии' противника(рандом/алгоритм)
+        'ии' противника(рандом/алгоритм)    
 """
