@@ -19,11 +19,6 @@ def build_menus(app):
 
     return [
         Menu(app, [
-            Button(app, f2, [app],                           pos=[810, 500], size=[300, 75]),
-            Button(app,                                      pos=[810, 625], size=[300, 75]),
-            Button(app,                                      pos=[810, 750], size=[300, 75]),
-            Button(app, setattr, [app, 'is_running', False], pos=[810, 875], size=[300, 75]),
-            Button(app,                                      pos=[660, 300], size=[600, 175])
-        ], pos=[0, 0], size=WIN_RES),
-
+            Button(app, f2, [app], pos=[810, 600], size=[300, 75])
+        ], pos=[0, 0], size=WIN_RES)
     ]

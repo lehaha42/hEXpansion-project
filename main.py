@@ -23,9 +23,15 @@ class App:
 
     def on_init(self):
 
+        self.texture = Texture(self)
+
         self.world = World(self, scale=70)
         pos = Cell.get_position([0, 0], [self.world.size - 1, self.world.size - 1], self.world.scale)
         self.world.move_for([(WIN_RES[0] - pos[0]) / 2, (WIN_RES[1] - pos[1]) / 2])
+
+        self.mouse_handler = MouseHandler(self)
+
+        self.menus = build_menus(self)
 
         self.world.arr[7][14].team = 3
         self.world.arr[7][14].amount = 3
@@ -33,12 +39,6 @@ class App:
         self.world.arr[0][7].amount = 3
         self.world.arr[14][0].team = 1
         self.world.arr[14][0].amount = 3
-
-        self.mouse_handler = MouseHandler(self)
-
-        self.menus = build_menus(self)
-
-        self.texture = Texture(self)
 
         self.curr_team = 3
         self.our_team = 3
@@ -134,7 +134,7 @@ class App:
     def place_texture(self, texture, pos: list):
         self.screen.blit(texture, pos)
 
-    def scale_texture(self, texture, size: float):
+    def scale_texture(self, texture, size: tuple):
         texture = pg.transform.scale(texture, size)
 
         return texture
