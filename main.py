@@ -103,6 +103,12 @@ class App:
                     cell.amount = cell.amount - self.selected.amount
                     self.selected.amount = 1
 
+    def skip_team(self):
+        if self.logic_state == 0:
+            self.selected = None
+            self.team_power = self.world.count_cells(self.curr_team)
+            self.logic_state = 1
+
     def text(self, pos: list, scale: float, text: str):
         self.screen.blit(pg.font.Font(None, scale).render(text, True, WHITE), pos)
 

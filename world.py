@@ -1,5 +1,6 @@
 from settings import *
 from cell import Cell
+from button import Button
 
 
 class World:
@@ -8,6 +9,7 @@ class World:
         self.offset = offset
         self.app = app
         self.size = size * 2 + 1
+        self.button = Button(self.app, self.app.skip_team, pos=[50, 50], size=[50, 50])
         # create basic world
         self.arr = [[Cell(self.app, [i, j], offset, scale, self.basic_rule([i, j]))
                      for i in range(self.size)]
@@ -22,8 +24,6 @@ class World:
 
     def is_exist(self, pos: list):
         return self.basic_rule(pos) and 0 <= pos[0] < self.size and 0 <= pos[1] < self.size
-
-    #def can_move(self, ):
 
     def move_for(self, pos: list):
         self.offset = [max(min(self.offset[0] + pos[0], WIN_RES[0] - 400), -800),
@@ -71,6 +71,7 @@ class World:
                 self.arr[j][i].show(self.offset, [i, j], self.scale)
 
     def update(self, pos: list):
+        self.button.click(pos)
         for i in range(self.size):
             for j in range(self.size):
                 self.arr[i][j].update(pos)
