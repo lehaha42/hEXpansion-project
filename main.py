@@ -137,14 +137,12 @@ class App:
         if self.render_world:
             self.world.show()
             teams = self.world.count_teams()
-            try:
+            if sum(teams) != 0:
                 p1 = (teams[0] / sum(teams)) * WIN_RES[0]
                 p2 = (teams[1] / sum(teams)) * WIN_RES[0]
-                pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1]-20, p1, 20])
-                pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1]-20, p2, 20])
-                pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1]-20, WIN_RES[0], 20])
-            except:
-                pass
+                pg.draw.rect(self.screen, TEAMS[1], [0, WIN_RES[1] - 20, p1, 20])
+                pg.draw.rect(self.screen, TEAMS[2], [p1, WIN_RES[1] - 20, p2, 20])
+                pg.draw.rect(self.screen, TEAMS[3], [p1 + p2, WIN_RES[1] - 20, WIN_RES[0] - p2 - p1, 20])
             pg.draw.rect(self.screen, TEAMS[self.curr_team], [50, 50, 50, 50])
             if self.logic_state:
                 pg.draw.rect(self.screen, WHITE, [50, 50, 50, 50], 2)
